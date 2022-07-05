@@ -12,7 +12,7 @@ public class Cell : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        gridController = GameObject.FindGameObjectWithTag("GlobalData").GetComponent<GridController>();
+        gridController = GameObject.FindGameObjectWithTag("GridController").GetComponent<GridController>();
         gridController.cellObjList.Add(this.gameObject);
         this.GetComponent<SpriteRenderer>().sprite = gridController.cell;
     }

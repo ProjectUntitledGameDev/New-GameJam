@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - GlobalData
+  - Bullet
+  - GridController
   layers:
   - Default
   - TransparentFX

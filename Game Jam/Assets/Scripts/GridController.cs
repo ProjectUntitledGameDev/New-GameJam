@@ -76,4 +76,21 @@ public class GridController : MonoBehaviour
         }
     }
 
+    public void SaveImage()
+    {
+        for (int i = 0; i <= (cellObjList.Count - 1); i++)
+        {
+            PlayerPrefs.SetFloat("rCell" + i, cellObjList[i].GetComponent<SpriteRenderer>().color.r);
+            PlayerPrefs.SetFloat("gCell" + i, cellObjList[i].GetComponent<SpriteRenderer>().color.g);
+            PlayerPrefs.SetFloat("bCell" + i, cellObjList[i].GetComponent<SpriteRenderer>().color.b);
+        }
+    }
+    public void LoadImage()
+    {
+        for (int i = 0; i <= (cellObjList.Count - 1); i++)
+        {
+            Color temp = new Color(PlayerPrefs.GetFloat("rCell" + i), PlayerPrefs.GetFloat("gCell" + i),PlayerPrefs.GetFloat("bCell" + i));
+            cellObjList[i].GetComponent<SpriteRenderer>().color = temp;
+        }
+    }
 }
