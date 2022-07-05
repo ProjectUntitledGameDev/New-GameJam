@@ -5,28 +5,75 @@ using UnityEngine;
 public class GridController : MonoBehaviour
 {
     public List<GameObject> cellObjList;
-    public List<GameObject> topCells;
-    public List<GameObject> botCells;
-    private GridConstruct grid;
+    private GameObject[,] cellArray;
+    private GridConstructor grid;
+    private GlobalData gd;
     public Sprite cell;
     public int gridWidth;
     public int gridHeight;
     public float cellSize;
-    // Start is called before the first frame update
+
     void Awake()
     {
-        grid = new GridConstruct(gridWidth, gridHeight, cellSize);
-        //new x = x + height; (To move it over you just +/- the height from the current index. 2nd pos in row 1 + height will equal the 2nd pos in 2nd row.)
-        for (int i = 0; i < gridWidth; i++)
-        {
-            topCells.Add(cellObjList[((i + 1) * gridHeight) - 1]);
-            cellObjList[((i + 1) * gridHeight) - 1].GetComponent<Cell>().index = (i + 1) * gridHeight;
-        }
-        for (int i = 0; i < gridWidth; i++)
-        {
-            botCells.Add(cellObjList[(i * gridHeight)]);
-            botCells[i].GetComponent<Cell>().botRow = true;
-        }
-
+        cellArray = new GameObject[gridWidth, gridHeight];
+        gd = GameObject.FindGameObjectWithTag("GlobalData").GetComponent<GlobalData>();
+        grid = new GridConstructor(gridWidth, gridHeight, cellSize);
     }
+    private void Start()
+    {
+        for (int i = 0; i <= (cellObjList.Count - 1); i++)
+        {
+            cellArray[cellObjList[i].GetComponent<Cell>().x, cellObjList[i].GetComponent<Cell>().y] = cellObjList[i];
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            StartUpdateColour(GetMouseWorldPos(), gd.color);
+        }
+    }
+
+    public static Vector3 GetMouseWorldPos()
+    {
+        Vector3 v3 = GetMouseWorldPosWithZ(Input.mousePosition, Camera.main);
+        v3.z = 0f;
+        return v3;
+    }
+    public static Vector3 GetMouseWorldPosWithZ(Vector3 screenPos, Camera mainCam)
+    {
+        Vector3 worldPos = mainCam.ScreenToWorldPoint(screenPos);
+        return worldPos;
+    }
+
+
+    private void GetXY(Vector3 worldPos, out int x, out int y)
+    {
+        x = Mathf.FloorToInt(worldPos.x / cellSize);
+        y = Mathf.FloorToInt(worldPos.y / cellSize);
+    }
+
+    public void StartUpdateColour(Vector3 worldPos, Color colour)
+    {
+        int x, y;
+        GetXY(worldPos, out x, out y);
+        UpdateColour(x, y, colour);
+    }
+    public void UpdateColour(int x, int y, Color colour)
+    {
+        if (x >= 0 && y >= 0 && x < gridWidth && y < gridHeight)
+        {
+            cellArray[x, y].GetComponent<SpriteRenderer>().color = colour;
+            cellArray[x, y].GetComponent<Cell>().SaveColour();
+        }
+    }
+
+    public void Restart()
+    {
+        for (int i = 0; i <= (cellObjList.Count - 1); i++)
+        {
+            cellObjList[i].GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
+
 }

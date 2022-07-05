@@ -8,11 +8,17 @@ public class Cell : MonoBehaviour
     public bool occupied;
     public int index;
     public bool botRow;
+    public int x, y;
     // Start is called before the first frame update
     void Awake()
     {
         gridController = GameObject.FindGameObjectWithTag("GlobalData").GetComponent<GridController>();
         gridController.cellObjList.Add(this.gameObject);
         this.GetComponent<SpriteRenderer>().sprite = gridController.cell;
+    }
+
+    public void SaveColour()
+    {
+
     }
 }

@@ -5,9 +5,4 @@ using UnityEngine;
 public class GlobalData : MonoBehaviour
 {
     public Color color;
-
-    public void SetColour()
-    {
-
-    }
 }
