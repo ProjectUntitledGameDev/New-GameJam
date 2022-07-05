@@ -17,7 +17,7 @@ public class GridController : MonoBehaviour
     {
         cellArray = new GameObject[gridWidth, gridHeight];
         gd = GameObject.FindGameObjectWithTag("GlobalData").GetComponent<GlobalData>();
-        grid = new GridConstructor(gridWidth, gridHeight, cellSize);
+        grid = new GridConstructor(gridWidth, gridHeight, cellSize, this.gameObject.transform);
     }
     private void Start()
     {
