@@ -2021,7 +2021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  lastPos: {x: 0, y: 0, z: 0}
+  spawnPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1019962254
 Transform:
   m_ObjectHideFlags: 0
@@ -2044,7 +2044,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019962252}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f71dca693bf23dd499132cd9f025a6fe, type: 3}
   m_Name: 
@@ -3971,6 +3971,10 @@ PrefabInstance:
     - target: {fileID: 7381826233498039658, guid: 795c1db302090394396b5cb6f1029a47, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381826233776936520, guid: 795c1db302090394396b5cb6f1029a47, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 795c1db302090394396b5cb6f1029a47, type: 3}

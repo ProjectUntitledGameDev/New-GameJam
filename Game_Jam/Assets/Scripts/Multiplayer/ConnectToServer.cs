@@ -5,9 +5,12 @@ using Photon.Pun;
 using UnityEngine.SceneManagement;
 public class ConnectToServer : MonoBehaviourPunCallbacks
 {
+    public MasterManager MyMaster;
     // Start is called before the first frame update
     void Start()
     {
+        PhotonNetwork.NickName = MyMaster.gameSettings.Username;
+        PhotonNetwork.GameVersion = MyMaster.gameSettings.GameVersion;
         PhotonNetwork.ConnectUsingSettings();
     }
 
@@ -19,12 +22,12 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        base.OnConnectedToMaster();
         PhotonNetwork.JoinLobby();
+        
     }
     public override void OnJoinedLobby()
     {
-        base.OnJoinedLobby();
+        
         SceneManager.LoadScene("Lobby"); 
     }
 }

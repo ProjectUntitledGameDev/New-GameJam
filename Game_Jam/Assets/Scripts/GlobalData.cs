@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class GlobalData : MonoBehaviour
+using Photon.Pun;
+public class GlobalData : MonoBehaviourPun
 {
     public Color color;
     public Vector3 spawnPos;
@@ -9,4 +10,13 @@ public class GlobalData : MonoBehaviour
     {
         spawnPos = Vector3.zero;
     }
+
+
+
+    [PunRPC]
+    public void ReadyUp(bool ready)
+    {
+        
+    }
+
 }

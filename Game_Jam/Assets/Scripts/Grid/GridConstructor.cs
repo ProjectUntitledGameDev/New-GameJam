@@ -25,7 +25,7 @@ public class GridConstructor
                 Debug.DrawLine(GetPos(x, y), GetPos(x, y + 1), Color.red, 10000f);
                 Debug.DrawLine(GetPos(x, y), GetPos(x + 1, y), Color.red, 10000f);
                 centrePoint = new Vector3(cellSize, cellSize) * .5f;
-                CreateCellObj(parent, GetPos(x, y) + new Vector3(cellSize, cellSize) * 0.5f, cells, x, y);
+                CreateCellObj(null, GetPos(x, y) + new Vector3(cellSize, cellSize) * 0.5f, cells, x, y);
             }
         Debug.DrawLine(GetPos(0, height), GetPos(width, height), Color.red, 10000f);
         Debug.DrawLine(GetPos(width, 0), GetPos(width, height), Color.red, 10000f);
